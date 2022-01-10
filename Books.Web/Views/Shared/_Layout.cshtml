@@ -12,9 +12,9 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 			<div class="container">
-				<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Books Web</a>
+				<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><b>Books Web</b></a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -59,9 +59,9 @@
 		</main>
 	</div>
 
-	<footer class="border-top footer text-muted">
+	<footer class="footer text-muted bg-primary">
 		<div class="container">
-			&copy; 2022 - Books.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+			&copy; @DateTime.Now.Year - Books Web
 		</div>
 	</footer>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
