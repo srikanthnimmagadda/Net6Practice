@@ -16,4 +16,9 @@ public class BooksDbContext : DbContext
 	/// 
 	/// </summary>
 	public DbSet<Category> Categories { get; set; }
+
+	/// <summary>
+	/// 
+	/// </summary>
+	public DbSet<CoverType> CoverTypes { get; set; }
 }
