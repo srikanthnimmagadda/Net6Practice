@@ -21,4 +21,9 @@ public class BooksDbContext : DbContext
 	/// 
 	/// </summary>
 	public DbSet<CoverType> CoverTypes { get; set; }
+
+	/// <summary>
+	/// 
+	/// </summary>
+	public DbSet<Product> Products { get; set; }
 }

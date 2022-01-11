@@ -2,8 +2,9 @@
 using Books.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Books.Web.Controllers
+namespace Books.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -23,7 +24,7 @@ namespace Books.Web.Controllers
         /// <returns></returns>
         public IActionResult Index()
         {
-			IEnumerable<Category>? categories = _unitOfWork.Category.GetAll();
+            IEnumerable<Category>? categories = _unitOfWork.Category.GetAll();
             return View(categories);
         }
 

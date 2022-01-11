@@ -2,7 +2,9 @@
 using Books.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Books.Web.Controllers;
+namespace Books.Web.Areas.Admin.Controllers;
+
+[Area("Admin")]
 public class CoverTypeController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;

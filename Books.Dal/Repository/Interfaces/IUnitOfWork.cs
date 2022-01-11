@@ -15,6 +15,11 @@
 		/// <summary>
 		/// 
 		/// </summary>
+		IProductRepository Product { get; }
+
+		/// <summary>
+		/// 
+		/// </summary>
 		void Save();
 	}
 }
