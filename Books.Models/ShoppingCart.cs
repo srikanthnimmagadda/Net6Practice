@@ -37,9 +37,9 @@ namespace Books.Models
         /// <summary>
         /// 
         /// </summary>
-        //[ForeignKey("ApplicationUserId")]
-        //[ValidateNever]
-        //public ApplicationUser ApplicationUser { get; set; }
+        [ForeignKey("ApplicationUserId")]
+        [ValidateNever]
+        public ApplicationUser ApplicationUser { get; set; }
 
         /// <summary>
         /// 

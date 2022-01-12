@@ -17,6 +17,7 @@ namespace Books.Dal.Repository
 			Category = new CategoryRepository(_dbContext);
 			CoverType = new CoverTypeRepository(_dbContext);
 			Product = new ProductRepository(_dbContext);
+			Company = new CompanyRepository(_dbContext);
 		}
 
 		/// <summary>
@@ -33,6 +34,11 @@ namespace Books.Dal.Repository
 		/// 
 		/// </summary>
         public IProductRepository Product { get; private set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public ICompanyRepository Company { get; private set; }
 
 		/// <summary>
 		/// 

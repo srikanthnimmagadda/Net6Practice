@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Books.Dal\Books.Dal.csproj" />
+    <ProjectReference Include="..\Books.Utility\Books.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>

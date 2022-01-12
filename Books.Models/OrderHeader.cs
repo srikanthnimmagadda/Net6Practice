@@ -11,12 +11,17 @@ namespace Books.Models
         /// </summary>
         public int Id { get; set; }
 
-        //public string ApplicationUserId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ApplicationUserId { get; set; }
 
-        
-        //[ForeignKey("ApplicationUserId")]
-        //[ValidateNever]
-        //public ApplicationUser ApplicationUser { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [ForeignKey("ApplicationUserId")]
+        [ValidateNever]
+        public ApplicationUser ApplicationUser { get; set; }
 
         /// <summary>
         /// 
