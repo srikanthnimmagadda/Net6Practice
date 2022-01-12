@@ -1,8 +1,9 @@
 ﻿using Books.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Books.Dal.Data;
-public class BooksDbContext : DbContext
+public class BooksDbContext : IdentityDbContext
 {
 	/// <summary>
 	/// 
