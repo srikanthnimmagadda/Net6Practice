@@ -17,7 +17,20 @@
         /// </summary>
         IProductRepository Product { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         ICompanyRepository Company { get; }
+
+        /// <summary>
+		/// 
+		/// </summary>
+		IShoppingCartRepository ShoppingCart { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IApplicationUserRepository ApplicationUser { get; }
 
         /// <summary>
         /// 

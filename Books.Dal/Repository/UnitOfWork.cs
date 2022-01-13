@@ -18,6 +18,8 @@ namespace Books.Dal.Repository
 			CoverType = new CoverTypeRepository(_dbContext);
 			Product = new ProductRepository(_dbContext);
 			Company = new CompanyRepository(_dbContext);
+			ApplicationUser = new ApplicationUserRepository(_dbContext);
+			ShoppingCart = new ShoppingCartRepository(_dbContext);
 		}
 
 		/// <summary>
@@ -39,6 +41,16 @@ namespace Books.Dal.Repository
 		/// 
 		/// </summary>
 		public ICompanyRepository Company { get; private set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public IShoppingCartRepository ShoppingCart { get; private set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public IApplicationUserRepository ApplicationUser { get; private set; }
 
 		/// <summary>
 		/// 

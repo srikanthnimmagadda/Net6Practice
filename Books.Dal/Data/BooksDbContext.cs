@@ -37,4 +37,19 @@ public class BooksDbContext : IdentityDbContext
     /// 
     /// </summary>
     public DbSet<Company> Companies { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<OrderHeader> OrderHeaders { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<OrderDetail> OrderDetail { get; set; }
 }

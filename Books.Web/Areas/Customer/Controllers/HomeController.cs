@@ -1,8 +1,11 @@
 ﻿using Books.Dal.Repository.Interfaces;
 using Books.Models;
+using Books.Utility;
 using Books.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Books.Web.Areas.Customer.Controllers
 {
@@ -29,7 +32,7 @@ namespace Books.Web.Areas.Customer.Controllers
         /// <returns></returns>
         public IActionResult Index()
         {
-            var products = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
+            IEnumerable<Product>? products = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
             return View(products);
         }
 
@@ -48,6 +51,39 @@ namespace Books.Web.Areas.Customer.Controllers
             };
 
             return View(cart);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shoppingCart"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public IActionResult Details(ShoppingCart shoppingCart)
+        {
+            ClaimsIdentity? claimsIdentity = (ClaimsIdentity)User.Identity;
+            Claim? claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            shoppingCart.ApplicationUserId = claim.Value;
+
+            ShoppingCart cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(
+                u => u.ApplicationUserId == claim.Value && u.ProductId == shoppingCart.ProductId);
+
+            if (cart == null)
+            {
+                _unitOfWork.ShoppingCart.Add(shoppingCart);
+                _unitOfWork.Save();
+                //HttpContext.Session.SetInt32(Constants.SessionCart,
+                //    _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count);
+            }
+            else
+            {
+                _unitOfWork.ShoppingCart.IncrementCount(cart, shoppingCart.Count);
+                _unitOfWork.Save();
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         /// <summary>
