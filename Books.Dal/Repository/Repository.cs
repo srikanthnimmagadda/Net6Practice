@@ -3,7 +3,7 @@ using Books.Dal.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace BulkyBook.DataAccess.Repository
+namespace Books.Dal.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
@@ -16,8 +16,8 @@ namespace BulkyBook.DataAccess.Repository
         /// <param name="dbContext"></param>
         public Repository(BooksDbContext dbContext)
         {
-            _dbContext= dbContext;
-            this.dbSet= _dbContext.Set<T>();
+            _dbContext = dbContext;
+            dbSet = _dbContext.Set<T>();
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace BulkyBook.DataAccess.Repository
         /// <param name="filter"></param>
         /// <param name="includeProperties"></param>
         /// <returns></returns>
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter=null, string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
             if (filter != null)
@@ -44,7 +44,7 @@ namespace BulkyBook.DataAccess.Repository
             }
             if (includeProperties != null)
             {
-                foreach(var includeProp in includeProperties.Split(new char[] { ','}, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProp);
                 }
@@ -73,8 +73,8 @@ namespace BulkyBook.DataAccess.Repository
                         query = query.Include(includeProp);
                     }
                 }
-				return query.FirstOrDefault();
-			}
+                return query.FirstOrDefault();
+            }
             else
             {
                 IQueryable<T> query = dbSet.AsNoTracking();
@@ -89,7 +89,7 @@ namespace BulkyBook.DataAccess.Repository
                 }
                 return query.FirstOrDefault();
             }
-            
+
         }
 
         /// <summary>

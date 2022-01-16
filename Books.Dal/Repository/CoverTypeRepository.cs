@@ -1,7 +1,6 @@
 ﻿using Books.Dal.Data;
 using Books.Dal.Repository.Interfaces;
 using Books.Models;
-using BulkyBook.DataAccess.Repository;
 
 namespace Books.Dal.Repository
 {

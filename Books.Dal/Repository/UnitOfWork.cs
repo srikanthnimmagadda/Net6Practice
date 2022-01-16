@@ -20,6 +20,8 @@ namespace Books.Dal.Repository
 			Company = new CompanyRepository(_dbContext);
 			ApplicationUser = new ApplicationUserRepository(_dbContext);
 			ShoppingCart = new ShoppingCartRepository(_dbContext);
+			OrderHeader = new OrderHeaderRepository(_dbContext);
+			OrderDetail = new OrderDetailRepository(_dbContext);
 		}
 
 		/// <summary>
@@ -51,6 +53,16 @@ namespace Books.Dal.Repository
 		/// 
 		/// </summary>
 		public IApplicationUserRepository ApplicationUser { get; private set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public IOrderHeaderRepository OrderHeader { get; private set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public IOrderDetailRepository OrderDetail { get; private set; }
 
 		/// <summary>
 		/// 

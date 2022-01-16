@@ -35,6 +35,16 @@
         /// <summary>
         /// 
         /// </summary>
+        IOrderHeaderRepository OrderHeader { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IOrderDetailRepository OrderDetail { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         void Save();
     }
 }
