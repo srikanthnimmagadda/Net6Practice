@@ -1,10 +1,13 @@
 ﻿using Books.Dal.Repository.Interfaces;
 using Books.Models;
+using Books.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Books.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Constants.RoleAdmin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
