@@ -83,8 +83,8 @@ namespace Books.Web.Areas.Customer.Controllers
             if (cart.Count <= 1)
             {
                 _unitOfWork.ShoppingCart.Remove(cart);
-                //var count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count - 1;
-                //HttpContext.Session.SetInt32(Constants.SessionCart, count);
+                int count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count - 1;
+                HttpContext.Session.SetInt32(Constants.SessionCart, count);
             }
             else
             {
@@ -105,7 +105,7 @@ namespace Books.Web.Areas.Customer.Controllers
             _unitOfWork.ShoppingCart.Remove(cart);
             _unitOfWork.Save();
             int count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
-            //HttpContext.Session.SetInt32(Constants.SessionCart, count);
+            HttpContext.Session.SetInt32(Constants.SessionCart, count);
             return RedirectToAction(nameof(Index));
         }
 
@@ -272,6 +272,7 @@ namespace Books.Web.Areas.Customer.Controllers
             //Remove once the order is placed
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart
                 .GetAll(u => u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
+            HttpContext.Session.Clear();
             _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
             _unitOfWork.Save();
 

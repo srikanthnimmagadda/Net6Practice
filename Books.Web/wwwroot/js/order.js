@@ -41,10 +41,11 @@ function loadDataTable(status) {
                 "data": "id",
                 "render": function (data) {
                     return `
-                        <div class="w-75 btn-group-sm" role="group">
-                        <a href="/Admin/Order/Details?orderId=${data}"
-                        class="btn btn-primary mx-1"> <i class="bi bi-pencil-square"></i></a>
-					</div>
+                            <div class="w-75 btn-group-sm" role="group">
+                                <a href="/Admin/Order/Details?orderId=${data}" class="btn btn-primary mx-1">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </div> `
                 },
                 "width": "5%"
             }

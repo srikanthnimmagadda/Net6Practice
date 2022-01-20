@@ -74,8 +74,8 @@ namespace Books.Web.Areas.Customer.Controllers
             {
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
                 _unitOfWork.Save();
-                //HttpContext.Session.SetInt32(Constants.SessionCart,
-                //    _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count);
+                HttpContext.Session.SetInt32(Constants.SessionCart,
+                    _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count);
             }
             else
             {
