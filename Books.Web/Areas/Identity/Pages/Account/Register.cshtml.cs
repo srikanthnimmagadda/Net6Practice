@@ -166,13 +166,13 @@ namespace Books.Web.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (!_roleManager.RoleExistsAsync(Constants.RoleAdmin).GetAwaiter().GetResult())
-            {
-                _roleManager.CreateAsync(new IdentityRole(Constants.RoleAdmin)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(Constants.RoleEmployee)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(Constants.RoleUserComp)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(Constants.RoleUserIndi)).GetAwaiter().GetResult(); 
-            }
+            //if (!_roleManager.RoleExistsAsync(Constants.RoleAdmin).GetAwaiter().GetResult())
+            //{
+            //    _roleManager.CreateAsync(new IdentityRole(Constants.RoleAdmin)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(Constants.RoleEmployee)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(Constants.RoleUserComp)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(Constants.RoleUserIndi)).GetAwaiter().GetResult();
+            //}
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -247,7 +247,14 @@ namespace Books.Web.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (User.IsInRole(Constants.RoleAdmin))
+                        {
+                            TempData["success"] = "New User Created Successfully";
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }
