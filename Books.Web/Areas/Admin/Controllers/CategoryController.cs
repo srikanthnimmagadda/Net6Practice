@@ -1,5 +1,6 @@
 ﻿using Books.Dal.Repository.Interfaces;
 using Books.Models;
+using Books.Models.ViewModels;
 using Books.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,14 +22,32 @@ namespace Books.Web.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult Index()
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="page"></param>
+       /// <returns></returns>
+        public async Task<IActionResult> Index(int page = 1)
         {
-            IEnumerable<Category>? categories = _unitOfWork.Category.GetAll();
-            return View(categories);
+            //IEnumerable<Category>? categories = _unitOfWork.Category.GetAll();
+            CategoryViewModel model = new CategoryViewModel
+            {
+                Categories = await _unitOfWork.Category.GetAllAsync()
+            };
+
+            var count = model.Categories.Count();
+            model.Categories = model.Categories.OrderBy(p => p.Name)
+                .Skip((page - 1) * 2).Take(2).ToList();
+
+            model.PagingInfo = new PagingInfo
+            {
+                CurrentPage = page,
+                ItemsPerPage = 2,
+                TotalItem = count,
+                UrlParam = "/Admin/Category/Index?page=:"
+            };
+
+            return View(model);
         }
 
         /// <summary>
